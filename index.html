@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-2.2.3.min.js"></script>
+    <script src="colorcard.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            moz-user-select: -moz-none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+            background-color: darkgray;
+        }
+
+        .color-card-div {
+            position: fixed;
+            z-index: 999;
+            bottom: 50%;
+            right: 40%;
+            height: 35px;
+            padding-top: 5px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        #color-card {
+            width: 400px;
+            height: 30px;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+<div class="color-card-div">
+    <div id="color-card"></div>
+</div>
+
+<script>
+
+    var data = "{\"colorArray\":[\"rgb(240,240,240)\",\"rgb(166,242,143)\",\"rgb(61,186,61)\",\"rgb(97,184,255)\",\"rgb(0,0,225)\",\"rgb(250,0,250)\",\"rgb(128,0,64)\"],\"valueArray\":[\"1\",\"2\",\"7\",\"15\",\"40\",\"50\"]}";
+    data = JSON.parse(data);
+
+    $('#color-card').ColorCard({
+        type: 1,
+        colorArray: data.colorArray,
+        valueArray: data.valueArray
+    }, function (value, index) {
+        alert("callback(value:" + value + ",index:" + index + ")");
+    });
+</script>
+</body>
+</html>
